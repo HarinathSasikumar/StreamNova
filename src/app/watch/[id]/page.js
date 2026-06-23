@@ -1,4 +1,3 @@
-'use client';
 import { VIDEOS } from '@/utils/data';
 import CinemaPlayer from '@/components/CinemaPlayer';
 import CommentSection from '@/components/CommentSection';
@@ -63,4 +62,10 @@ export default function WatchPage({ params }) {
       </div>
     </div>
   );
+}
+
+export async function generateStaticParams() {
+  return VIDEOS.map(v => ({
+    id: v.id,
+  }));
 }
