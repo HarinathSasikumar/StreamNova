@@ -125,7 +125,7 @@ StreamNova/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/StreamNova.git
+git clone https://github.com/HarinathSasikumar/StreamNova.git
 
 # 2. Navigate into the project
 cd StreamNova
