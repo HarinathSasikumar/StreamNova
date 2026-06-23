@@ -108,12 +108,8 @@ export default function HomePage() {
       )}
 
       {/* ── FEATURED VIDEO (Cinematic Hero Banner) ───────────────── */}
-      <section style={{ marginBottom: 52 }}>
-        <div style={{
-          position: 'relative', borderRadius: 'var(--radius-xl)', overflow: 'hidden',
-          height: 'clamp(320px, 42vw, 520px)',
-          boxShadow: '0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06)',
-        }}>
+      <section className="featured-section">
+        <div className="featured-banner">
           {/* Background image */}
           <img
             src={featuredVideo.thumbnail}
@@ -149,15 +145,11 @@ export default function HomePage() {
           ))}
 
           {/* Content */}
-          <div style={{
-            position: 'absolute', inset: 0, zIndex: 2,
-            display: 'flex', alignItems: 'flex-end',
-            padding: 'clamp(24px, 4vw, 52px)',
-          }}>
+          <div className="featured-content">
             <div style={{ maxWidth: 620, width: '100%' }}>
 
               {/* Badge row */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 18, flexWrap: 'wrap' }}>
+              <div className="featured-badges">
                 <span style={{
                   display: 'inline-flex', alignItems: 'center', gap: 6,
                   padding: '4px 14px', borderRadius: 999,
@@ -175,21 +167,16 @@ export default function HomePage() {
                   <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#ef4444', animation: 'pulse 1.4s infinite', display: 'inline-block' }} />
                   LIVE NOW
                 </span>
-                {/* Genre pills */}
+                {/* Genre pills — hidden on mobile */}
                 {['Science', 'Documentary', '4K HDR'].map(tag => (
-                  <span key={tag} style={{ padding: '3px 10px', borderRadius: 999, background: 'rgba(255,255,255,0.09)', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.65)', fontSize: '0.68rem', fontWeight: 600 }}>
+                  <span key={tag} className="featured-genre-pill">
                     {tag}
                   </span>
                 ))}
               </div>
 
               {/* Title */}
-              <h2 style={{
-                fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 900, lineHeight: 1.1,
-                marginBottom: 14, letterSpacing: '-0.02em',
-                textShadow: '0 2px 30px rgba(0,0,0,0.8), 0 4px 60px rgba(0,0,0,0.5)',
-                color: '#fff',
-              }}>
+              <h2 className="featured-title">
                 {featuredVideo.title}
               </h2>
 
@@ -203,64 +190,46 @@ export default function HomePage() {
               </p>
 
               {/* Meta row */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28, flexWrap: 'wrap' }}>
-                <span style={{ display: 'flex', alignItems: 'center', gap: 5, color: 'rgba(255,255,255,0.55)', fontSize: '0.82rem', fontWeight: 600 }}>
+              <div className="featured-meta">
+                <span style={{ display: 'flex', alignItems: 'center', gap: 5, color: 'rgba(255,255,255,0.6)', fontSize: '0.82rem', fontWeight: 600 }}>
                   <FiUsers size={13} /> {featuredVideo.channel}
                 </span>
                 <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'rgba(255,255,255,0.3)', display: 'inline-block' }} />
-                <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: 4 }}>
+                <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: 4 }}>
                   <FiTrendingUp size={13} /> {featuredVideo.views} views
                 </span>
-                <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'rgba(255,255,255,0.3)', display: 'inline-block' }} />
-                <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.82rem' }}>{featuredVideo.timestamp}</span>
-                {/* Rating */}
                 <span style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '2px 10px', borderRadius: 999, background: 'rgba(245,158,11,0.15)', border: '1px solid rgba(245,158,11,0.3)', color: '#fbbf24', fontSize: '0.75rem', fontWeight: 700 }}>
                   <FiStar size={11} /> 4.9
                 </span>
-                {/* Duration */}
                 <span style={{ padding: '2px 10px', borderRadius: 999, background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.7)', fontSize: '0.72rem', fontWeight: 700 }}>
                   {featuredVideo.duration}
                 </span>
               </div>
 
               {/* CTA buttons */}
-              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+              <div className="featured-cta">
                 <Link
                   href={`/watch/${featuredVideo.id}`}
-                  className="btn btn-primary"
-                  style={{ padding: '14px 28px', fontSize: '0.95rem', fontWeight: 700, boxShadow: '0 0 32px rgba(99,102,241,0.5)', gap: 10 }}
+                  className="btn btn-primary featured-btn-watch"
                 >
                   <FiPlayCircle size={20} /> Watch Now
                 </Link>
                 <Link
                   href="/premium"
-                  className="btn btn-gold"
-                  style={{ padding: '14px 24px', fontSize: '0.9rem', fontWeight: 700 }}
+                  className="btn btn-gold featured-btn-gold"
                 >
                   <FiAward size={17} /> Get Gold Access
                 </Link>
-                {/* Floating play button on right */}
-                <div style={{
-                  marginLeft: 'auto',
-                  width: 52, height: 52, borderRadius: '50%',
-                  background: 'rgba(255,255,255,0.15)',
-                  backdropFilter: 'blur(8px)',
-                  border: '1.5px solid rgba(255,255,255,0.25)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  cursor: 'pointer', color: 'white',
-                  boxShadow: '0 0 0 8px rgba(255,255,255,0.05)',
-                }}>
+                {/* Star button — hidden on mobile */}
+                <div className="featured-star-btn">
                   <FiStar size={20} fill="rgba(245,158,11,0.8)" color="#fbbf24" />
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Big centered play button (right side visual) */}
-          <div style={{
-            position: 'absolute', top: '50%', right: '20%', transform: 'translateY(-50%)',
-            zIndex: 1, pointerEvents: 'none',
-          }}>
+          {/* Big centered play button (right side visual) — hidden on mobile */}
+          <div className="featured-play-circle">
             <div style={{
               width: 80, height: 80, borderRadius: '50%',
               background: 'rgba(255,255,255,0.12)',
