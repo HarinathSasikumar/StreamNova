@@ -428,3 +428,144 @@
     width: 100%;
   }
 }
+
+/* ========== FEATURE BENTO GRID ========== */
+.feature-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+/* Tablet: 2 columns */
+@media (max-width: 1023px) {
+  .feature-bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 639px) {
+  .feature-bento-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+/* ========== FEATURE CARD ========== */
+.feature-card {
+  position: relative;
+  padding: 32px 28px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.35s ease;
+  cursor: default;
+}
+
+/* Feature card top row: icon left, stat right */
+.feature-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* Mobile: compact horizontal card layout */
+@media (max-width: 639px) {
+  .feature-card {
+    padding: 24px 20px;
+    /* Subtle active tap feedback on mobile */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .feature-card:active {
+    transform: scale(0.98);
+    opacity: 0.95;
+  }
+
+  .feature-card-top {
+    margin-bottom: 16px;
+  }
+}
+
+/* ========== HERO — MOBILE POLISH ========== */
+@media (max-width: 639px) {
+  .hero {
+    padding: 48px 0 32px;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 10vw, 2.8rem) !important;
+  }
+
+  .hero-desc {
+    font-size: 0.92rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-cta a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-stats {
+    gap: 0;
+    flex-wrap: nowrap;
+  }
+
+  .hero-stat-value {
+    font-size: 1.2rem !important;
+  }
+
+  .hero-stat-label {
+    font-size: 0.65rem !important;
+  }
+}
+
+/* ========== CTA BANNER — MOBILE ========== */
+@media (max-width: 639px) {
+  .cta-banner {
+    padding: 36px 20px !important;
+  }
+
+  .cta-banner h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .cta-banner a {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* ========== GREETING CARD — MOBILE ========== */
+@media (max-width: 639px) {
+  .greeting-card-inner {
+    flex-direction: column !important;
+    text-align: center;
+    gap: 16px !important;
+    align-items: center !important;
+  }
+
+  .greeting-card-actions {
+    margin-left: 0 !important;
+    justify-content: center;
+  }
+}
+
+/* ========== SECTION HEADING — MOBILE ========== */
+@media (max-width: 639px) {
+  section > div[style*="textAlign: 'center'"] h2,
+  section > div[style*="text-align: center"] h2 {
+    font-size: clamp(1.6rem, 8vw, 2.2rem) !important;
+  }
+}

@@ -342,7 +342,7 @@ export default function HomePage() {
         </div>
 
         {/* Bento grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 18 }}>
+        <div className="feature-bento-grid">
           {[
             {
               icon: <FiGlobe size={32} />, title: 'AI Translation',
@@ -383,57 +383,53 @@ export default function HomePage() {
           ].map((f, i) => (
             <div
               key={f.title}
+              className="feature-card"
               style={{
-                gridColumn: f.span === 2 ? 'span 2' : 'span 1',
-                position: 'relative',
-                padding: '36px 32px',
-                borderRadius: 'var(--radius-xl)',
-                background: `linear-gradient(135deg, rgba(255,255,255,0.04) 0%, ${f.color}0a 100%)`,
+                '--card-color': f.color,
+                '--card-glow': f.glow,
+                background: `linear-gradient(135deg, rgba(255,255,255,0.04) 0%, ${f.color}0d 100%)`,
                 border: `1px solid ${f.color}30`,
-                overflow: 'hidden',
-                transition: 'all 0.35s cubic-bezier(0.4,0,0.2,1)',
-                cursor: 'default',
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.transform = 'translateY(-6px)';
-                e.currentTarget.style.boxShadow = `0 20px 60px ${f.glow}, 0 0 0 1px ${f.color}40`;
+                e.currentTarget.style.transform = 'translateY(-6px) scale(1.01)';
+                e.currentTarget.style.boxShadow = `0 24px 64px ${f.glow}, 0 0 0 1px ${f.color}50`;
                 e.currentTarget.style.borderColor = `${f.color}60`;
               }}
               onMouseLeave={e => {
-                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.transform = 'translateY(0) scale(1)';
                 e.currentTarget.style.boxShadow = 'none';
                 e.currentTarget.style.borderColor = `${f.color}30`;
               }}
             >
-              {/* Animated shimmer top border */}
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, transparent, ${f.color}, transparent)`, opacity: 0.7 }} />
-              {/* Corner glow */}
-              <div style={{ position: 'absolute', top: -30, right: -30, width: 120, height: 120, borderRadius: '50%', background: `radial-gradient(circle, ${f.color}18 0%, transparent 70%)`, pointerEvents: 'none' }} />
+              {/* Shimmer top border */}
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, transparent, ${f.color}, transparent)`, opacity: 0.8 }} />
+              {/* Corner glow blob */}
+              <div style={{ position: 'absolute', top: -30, right: -30, width: 140, height: 140, borderRadius: '50%', background: `radial-gradient(circle, ${f.color}15 0%, transparent 70%)`, pointerEvents: 'none' }} />
               {/* Index number */}
-              <div style={{ position: 'absolute', top: 20, right: 24, fontSize: '0.7rem', fontWeight: 800, color: `${f.color}50`, letterSpacing: '0.1em' }}>0{i + 1}</div>
+              <div style={{ position: 'absolute', top: 18, right: 20, fontSize: '0.68rem', fontWeight: 800, color: `${f.color}55`, letterSpacing: '0.12em' }}>0{i + 1}</div>
 
-              {/* Icon ring */}
-              <div style={{
-                width: 72, height: 72, borderRadius: '20px',
-                background: `linear-gradient(135deg, ${f.color}18 0%, ${f.color}08 100%)`,
-                border: `1.5px solid ${f.color}40`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: f.color, marginBottom: 24,
-                boxShadow: `0 0 16px ${f.color}20`,
-              }}>
-                {f.icon}
+              {/* Icon + stat row */}
+              <div className="feature-card-top">
+                <div style={{
+                  width: 64, height: 64, borderRadius: '18px', flexShrink: 0,
+                  background: `linear-gradient(135deg, ${f.color}20 0%, ${f.color}08 100%)`,
+                  border: `1.5px solid ${f.color}45`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: f.color,
+                  boxShadow: `0 0 20px ${f.color}25`,
+                }}>
+                  {f.icon}
+                </div>
+                {f.stat && (
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                    <span style={{ fontSize: '1.5rem', fontWeight: 900, color: f.color, lineHeight: 1 }}>{f.stat}</span>
+                    <span style={{ fontSize: '0.65rem', fontWeight: 700, color: `${f.color}80`, textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: 2 }}>{f.statLabel}</span>
+                  </div>
+                )}
               </div>
 
-              {/* Stat badge if available */}
-              {f.stat && (
-                <div style={{ display: 'inline-flex', alignItems: 'baseline', gap: 5, marginBottom: 12 }}>
-                  <span style={{ fontSize: '1.6rem', fontWeight: 900, color: f.color, lineHeight: 1 }}>{f.stat}</span>
-                  <span style={{ fontSize: '0.7rem', fontWeight: 600, color: `${f.color}80`, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{f.statLabel}</span>
-                </div>
-              )}
-
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 800, marginBottom: 10, color: 'var(--text-primary)', letterSpacing: '-0.01em' }}>{f.title}</h3>
-              <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.7, margin: 0 }}>{f.desc}</p>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 800, marginBottom: 8, color: 'var(--text-primary)', letterSpacing: '-0.01em' }}>{f.title}</h3>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, margin: 0 }}>{f.desc}</p>
             </div>
           ))}
         </div>
